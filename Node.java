@@ -2,13 +2,15 @@ public class Node {
     String value; // could be operator or operand
     Node left, right; // left and right children
 
-    Node(String value, Node left, Node right) {
+    //Constructor 
+ public Node(String value, Node left, Node right) {
         this.value = value;
         this.left = left;
         this.right = right;
     }
 
 
+    //leaf
     public static Node createLeaf(String value) { // operand node
         return new Node(value, null, null);
     }
@@ -24,3 +26,4 @@ public class Node {
         return new Node(op, operand, null);
     }
 }
+
