@@ -1,10 +1,15 @@
 public class Token {
+   
+    //What kind of token
     TokenType type;
+    
+    //Actual text of the token from input
     String value;
+    
     int pos; // position in the input string
 
-    //
-    Token(TokenType type, String value, int pos) {
+    //constructor 
+    public Token(TokenType type, String value, int pos) {
         this.type = type;
         this.value = value;
         this.pos = pos;
@@ -12,10 +17,6 @@ public class Token {
 
     @Override
     public String toString() {
-        return "Token{" +
-                "type=" + type +
-                ", value='" + value + '\'' +
-                ", pos=" + pos +
-                '}';
-    }   
+        return value;
+        }
 }
