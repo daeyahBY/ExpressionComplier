@@ -26,4 +26,3 @@ public class Node {
         return new Node(op, operand, null);
     }
 }
-
