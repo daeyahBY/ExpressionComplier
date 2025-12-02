@@ -1,7 +1,6 @@
-
-
 public class EvaluationException extends Exception {
-    EvaluationException(String message) {
-        super();
+
+    public EvaluationException(String message) {
+        super(message);
     }
 }
