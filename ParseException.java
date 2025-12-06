@@ -1,5 +1,5 @@
-public class ParseException extends Exception {
-    ParseException(String message) {
-        super();
-    }  
+public class LexicalException extends Exception {
+    public LexicalException(String message) {
+        super(message);
+    }
 }
