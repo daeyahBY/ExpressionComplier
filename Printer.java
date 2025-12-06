@@ -1,25 +1,19 @@
 public class Printer {
 
-    // Recursive helper
-    private void print(Node node, String prefix, boolean isLeft) {
-        if (node == null) {
-            return;
-        }
-
-        // Print right
-        print(node.right, prefix + (isLeft ? "|   " : "    "), false);
-
-        // Print this node
-        // Use "/--" for right child, "\--" for left child
-        System.out.println(prefix + (isLeft ? "\\-- " : "/-- ") + node.value);
-
-        // Print left
-        print(node.left, prefix + (isLeft ? "    " : "|   "), true);
+    public void print(Node node) {
+        print(node, "", true);
     }
 
-    // Public entry point
-    public void print(Node node) {
-        print(node, "", false);
+    private void print(Node node, String prefix, boolean isTail) {
+        if (node == null) return;
+
+        // print right subtree first 
+        print(node.right, prefix + (isTail ? "│   " : "    "), false);
+
+        // print this node
+        System.out.println(prefix + (isTail ? "└── " : "┌── ") + node.value);
+
+        // print left subtree
+        print(node.left, prefix + (isTail ? "    " : "│   "), true);
     }
 }
-
