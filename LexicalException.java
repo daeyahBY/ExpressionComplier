@@ -1,7 +1,5 @@
-
-
 public class LexicalException extends Exception {
-    LexicalException(String message) {
-        super();
+    public LexicalException(String message) {
+        super(message);
     }
 }
