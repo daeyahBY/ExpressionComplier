@@ -2,54 +2,58 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TraceTesting {
- 
- public static void main(String[] args) {
-       System.out.println("Mini Expression Compiler (Enter 'exit' to quit)");
-        
+
+    public static void main(String[] args) {
+        System.out.println("Mini Expression Compiler (Enter 'exit' to quit)");
 
         Scanner scanner = new Scanner(System.in);
-        
+
         while (true) {
             System.out.print(">> ");
             String line = scanner.nextLine();
-            
-            //allow user to quit
+
+            // allow user to quit
             if (line.equalsIgnoreCase("exit")) {
                 break;
             }
-            
 
             try {
-                  //Lexical analysis
+                // 1. Lexical analysis
                 Lexer lexer = new Lexer(line);
                 List<Token> tokens = lexer.tokenize();
-                
-                //printer tokens in required format
+
+                // print tokens in required format
                 System.out.println("Tokens: " + tokens);
-                
-                //Parsing
+
+                // 2. Parsing
                 Parser parser = new Parser(tokens);
                 Node ast = parser.parse();
-                
-                // Evaluation
+
+                // 3. Evaluation
                 Evaluator evaluator = new Evaluator();
                 double result = evaluator.evaluate(ast);
-                
-                //cast to int
+
+                // print evaluation result (cast to int to match handout)
                 System.out.println("Evaluation Result: " + (int) result);
-                
-                
-                // Print the parse tree
+
+                // 4. Print the parse tree
                 System.out.println("Parse Tree:");
                 Printer printer = new Printer();
                 printer.print(ast);
 
-                          
-                } catch (LexicalException | ParseException | EvaluationException e) {
-                   System.err.println("Error: " + e.getMessage());
+            } catch (LexicalException e) {
+                // stop immediately if there is a lexical error
+                System.err.println("Lexical Error: " + e.getMessage());
+                continue;   // go to next loop iteration; do NOT parse/evaluate
+            } catch (ParseException e) {
+                // parsing phase errors
+                System.err.println("Parse Error: " + e.getMessage());
+            } catch (EvaluationException e) {
+                // evaluation phase errors
+                System.err.println("Evaluation Error: " + e.getMessage());
             }
         }
+
         scanner.close();
     }
 }
-
